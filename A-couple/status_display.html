@@ -12,12 +12,11 @@
 
         /* Base Styling */
         body {
-            /* 요청사항 02: 날씨 이미지를 전체 배경으로 설정합니다. */
             background-color: #333;
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
-            transition: background-image 1s ease-in-out; /* 배경이 부드럽게 전환되도록 효과 추가 */
+            transition: background-image 1s ease-in-out;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -36,7 +35,7 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            max-width: 900px; /* Increased max-width for better layout */
+            max-width: 900px;
             gap: var(--item-padding);
             filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.5));
         }
@@ -59,8 +58,8 @@
         /* Character Card Styling */
         .two-dialog-card {
             width: calc(50% - (var(--item-padding) / 2));
-            height: 480px; /* Increased height */
-            border-radius: 8px; /* Smoother radius */
+            height: 480px;
+            border-radius: 8px;
             background: repeating-linear-gradient(
                 45deg,
                 var(--item-sprite-line),
@@ -76,6 +75,7 @@
             transition: width 0.5s ease-in-out, transform 0.3s ease;
             position: relative;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer; /* 클릭 가능함을 표시 */
         }
 
         .two-dialog-char-img {
@@ -85,14 +85,14 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 20%; /* Adjust image focus */
+            object-position: center 20%;
             margin: 0;
             transition: filter 0.5s, transform 0.5s ease-in-out;
         }
         
         /* Card Hover Effect */
         .two-dialog-card:hover {
-            width: 60%; /* Slightly larger hover effect */
+            width: 60%;
             transform: scale(1.02);
             z-index: 10;
         }
@@ -100,6 +100,25 @@
         .two-dialog-card:hover > .two-dialog-char-img {
             filter: blur(5px) brightness(0.7);
             transform: scale(1.1);
+        }
+
+        /* 이미지 업로드 힌트 */
+        .upload-hint {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 0.7em;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 2;
+        }
+
+        .two-dialog-card:hover .upload-hint {
+            opacity: 1;
         }
 
         /* Info Panel on Hover */
@@ -117,12 +136,12 @@
             overflow-y: auto;
             width: 90%;
             color: white;
-            visibility: hidden; /* Hide by default */
+            visibility: hidden;
         }
 
         .two-dialog-card:hover .two-dialog-info {
             opacity: 1;
-            visibility: visible; /* Show on hover */
+            visibility: visible;
         }
 
         .two-dialog-info-box {
@@ -153,7 +172,6 @@
             border-radius: 2px;
         }
 
-
         .two-dialog-info-box:last-child {
             margin-bottom: 0;
         }
@@ -172,11 +190,10 @@
             color: #3F3551;
         }
 
-
         /* Time/Weather Display Card */
         .two-dialog-simple-card {
             width: 100%;
-            height: auto; /* 높이를 자동으로 조절하여 내용에 맞춤 */
+            height: auto;
             border-radius: 8px;
             display: flex;
             align-items: flex-end;
@@ -186,11 +203,9 @@
             padding: 15px;
             box-sizing: border-box;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            background-color: rgba(0, 0, 0, 0.3); /* 배경이 잘 보이도록 반투명 배경 추가 */
+            background-color: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(2px);
         }
-
-        /* 요청사항 02: 기존의 작은 날씨 이미지는 제거되었으므로 관련 스타일도 제거합니다. */
 
         .two-dialog-details {
             color: white;
@@ -219,6 +234,7 @@
             justify-content: center;
             align-items: center;
             backdrop-filter: blur(5px);
+            flex-wrap: wrap;
         }
         .weather-control label {
             color: white;
@@ -242,6 +258,64 @@
             font-weight: bold;
             border-color: #9D90B4;
         }
+
+        /* 음악 컨트롤 */
+        .music-control {
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .music-control label {
+            color: white;
+            font-family: 'Gowun Batang', sans-serif;
+        }
+        .music-control input {
+            flex: 1;
+            min-width: 200px;
+            padding: 5px 10px;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 5px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        .music-control input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        .music-control button {
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .music-control button:hover {
+            background-color: rgba(255,255,255,0.4);
+        }
+
+        /* 숨겨진 파일 입력 */
+        .hidden-file-input {
+            display: none;
+        }
+
+        /* YouTube 플레이어 컨테이너 */
+        .youtube-container {
+            position: fixed;
+            top: -200px;
+            left: -200px;
+            width: 100px;
+            height: 100px;
+            pointer-events: none;
+            z-index: -1;
+        }
     </style>
 </head>
 <body>
@@ -256,12 +330,20 @@
             <button data-weather="Snowy">눈</button>
         </div>
 
+        <!-- 음악 컨트롤 -->
+        <div class="music-control">
+            <label>배경음악:</label>
+            <input type="text" id="music-url" placeholder="YouTube 링크를 입력하세요...">
+            <button id="play-music">재생</button>
+            <button id="stop-music">정지</button>
+        </div>
+
         <div class="two-dialog-dialog">
             <div class="two-dialog-container">
                 <!-- Torm's Card -->
-                <div id="Torm-card" class="two-dialog-card">
-                    <!-- 요청사항 01: 이미지 경로를 로컬 파일로 수정합니다. -->
-                    <img src="https://blog.kakaocdn.net/dna/bMS9On/btsQfjnzx4B/AAAAAAAAAAAAAAAAAAAAAGloEax36-NIMuZAMpBgzEbdxEfeo0sDNSR9NR2iS9e7/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1756652399&allow_ip=&allow_referer=&signature=upx9leFKDbUBAFv5IQ%2BONLRVoS4%3D" alt="Toma" class="two-dialog-char-img"/>
+                <div id="Toma-card" class="two-dialog-card" data-character="Toma">
+                    <div class="upload-hint">클릭해서 이미지 변경</div>
+                    <img src="https://blog.kakaocdn.net/dna/bMS9On/btsQfjnzx4B/AAAAAAAAAAAAAAAAAAAAAGloEax36-NIMuZAMpBgzEbdxEfeo0sDNSR9NR2iS9e7/img.png?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1756652399&allow_ip=&allow_referer=&signature=upx9leFKDbUBAFv5IQ%2BONLRVoS4%3D" alt="Toma" class="two-dialog-char-img" id="Toma-img"/>
                     <div class="two-dialog-info">
                         <h3 style="text-align: center; margin-top: 0;">TOMA</h3>
                         <div class="two-dialog-info-box">
@@ -287,9 +369,9 @@
                     </div>
                 </div>
                 <!-- bardock's Card -->
-                <div id="bardock-card" class="two-dialog-card">
-                     <!-- 요청사항 01: 이미지 경로를 로컬 파일로 수정합니다. -->
-                    <img src="https://blog.kakaocdn.net/dna/bKu25Q/btsQb5EAB6M/AAAAAAAAAAAAAAAAAAAAANYNIyVG4rc7JTmmSVIW36iwP15HeLNwP_vjDGrdunOZ/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1756652399&allow_ip=&allow_referer=&signature=Jpk0%2FguItPmYKHMMbkLyljXvFRM%3D" alt="bardock" class="two-dialog-char-img"/>
+                <div id="bardock-card" class="two-dialog-card" data-character="bardock">
+                    <div class="upload-hint">클릭해서 이미지 변경</div>
+                    <img src="https://blog.kakaocdn.net/dna/bKu25Q/btsQb5EAB6M/AAAAAAAAAAAAAAAAAAAAANYNIyVG4rc7JTmmSVIW36iwP15HeLNwP_vjDGrdunOZ/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1756652399&allow_ip=&allow_referer=&signature=Jpk0%2FguItPmYKHMMbkLyljXvFRM%3D" alt="bardock" class="two-dialog-char-img" id="bardock-img"/>
                     <div class="two-dialog-info">
                         <h3 style="text-align: center; margin-top: 0;">BARDOCK</h3>
                         <div class="two-dialog-info-box">
@@ -317,7 +399,6 @@
             </div>
             <!-- Time and Weather Display -->
             <div class="two-dialog-simple-card">
-                <!-- 요청사항 02: 작은 날씨 배경 이미지를 제거했습니다. 이제 body 전체에 배경이 표시됩니다. -->
                 <div class="two-dialog-details">
                     <div class="date" id="date-display"></div>
                     <div class="time" id="time-display"></div>
@@ -326,30 +407,62 @@
         </div>
     </div>
 
+    <!-- 숨겨진 파일 입력들 -->
+    <input type="file" id="Toma-file-input" class="hidden-file-input" accept="image/*">
+    <input type="file" id="bardock-file-input" class="hidden-file-input" accept="image/*">
+
+    <!-- YouTube 플레이어 -->
+    <div id="youtube-container" class="youtube-container"></div>
+
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <script>
-// 1. Firebase 초기화: 아까 복사해 둔 firebaseConfig 코드를 여기에 붙여넣으세요!
+// Firebase 초기화
 const firebaseConfig = {
     apiKey: "AIzaSyD-X7U6_dYnHTGWCikMw1zpb78SlWXMqqI",
     authDomain: "project-8519339398731273721.firebaseapp.com",
-    databaseURL: "https://project-8519339398731273721-default-rtdb.firebaseio.com/", // 중요: Realtime Database URL을 확인하세요!
+    databaseURL: "https://project-8519339398731273721-default-rtdb.firebaseio.com/",
     projectId: "project-8519339398731273721",
     storageBucket: "project-8519339398731273721.firebasestorage.app",
     messagingSenderId: "255930835214",
     appId: "1:255930835214:web:2482a3d96fd1928e3a775f"
 };
 
-// Firebase 앱 초기화
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
+// Firebase 초기화를 안전하게 처리
+function initializeFirebase() {
+    try {
+        if (typeof firebase === 'undefined') {
+            console.log('Firebase 로딩 중... 재시도합니다.');
+            setTimeout(initializeFirebase, 100);
+            return;
+        }
+        firebase.initializeApp(firebaseConfig);
+        console.log('Firebase 초기화 완료');
+        startApp();
+    } catch (error) {
+        console.error('Firebase 초기화 오류:', error);
+        setTimeout(initializeFirebase, 500);
+    }
+}
 
-document.addEventListener('DOMContentLoaded', () => {
+function startApp() {
+    const database = firebase.database();
     // --- ELEMENTS ---
     const editableFields = document.querySelectorAll('.value[contenteditable="true"]');
     const weatherButtons = document.querySelectorAll('.weather-control button');
     const dateDisplay = document.getElementById('date-display');
     const timeDisplay = document.getElementById('time-display');
+    const musicUrlInput = document.getElementById('music-url');
+    const playMusicBtn = document.getElementById('play-music');
+    const stopMusicBtn = document.getElementById('stop-music');
+    
+    // 캐릭터 카드와 파일 입력들
+    const tomaCard = document.getElementById('Toma-card');
+    const bardockCard = document.getElementById('bardock-card');
+    const tomaFileInput = document.getElementById('Toma-file-input');
+    const bardockFileInput = document.getElementById('bardock-file-input');
+    const tomaImg = document.getElementById('Toma-img');
+    const bardockImg = document.getElementById('bardock-img');
 
     // --- DATA ---
     const backgroundAssets = {
@@ -361,27 +474,37 @@ document.addEventListener('DOMContentLoaded', () => {
         Cloudy_afternoon: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FBj5Zt%2FbtsQfgqSbh7%2FAAAAAAAAAAAAAAAAAAAAAOK994kPgRsvrM4IdJR9pQ36CfoLRofIX9mwk9KlUS-4%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1756652399%26allow_ip%3D%26allow_referer%3D%26signature%3D3ucQaO6Rea8fvD1YmMNmzpgWN2A%253D',
         Cloudy_evening: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FWJUS7%2FbtsQc6Xgl8h%2FAAAAAAAAAAAAAAAAAAAAABFXTm8PX1ZnGkUAwn7Yhcexr4ba0DbgyycYiZjXTJYI%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1756652399%26allow_ip%3D%26allow_referer%3D%26signature%3D6YSaafIrwcaO%252BOiR%252BjLy8J9x7B4%253D',
         Cloudy_night: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbtOeiz%2FbtsQezjTim9%2FAAAAAAAAAAAAAAAAAAAAAPA7dLgQpkDM9FTfnoaOsnvTFUqpNxmBxyzxA2RvIP1E%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1756652399%26allow_ip%3D%26allow_referer%3D%26signature%3Dkr17IOoWzVRALp02pOTejq8xkYM%253D',
+        // 비 이미지들 (여러 장)
+        Rainy_day_01: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FLGmqS%2FbtsQcqPgH8c%2FAAAAAAAAAAAAAAAAAAAAALDvKkN51AVgU-hauwd7j1bzd9F2TxLQPVVvedxlMVvv%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1759244399%26allow_ip%3D%26allow_referer%3D%26signature%3DhMakY1N%252BTjLTO8Wkv7zw1sTPHRE%253D',
+        Rainy_day_02: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2F2Vejc%2FbtsQcl1uKee%2FAAAAAAAAAAAAAAAAAAAAANFU-aVGibO75cBjbsX_4LEMQ4M5PATmNGhYQylbBrmI%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1759244399%26allow_ip%3D%26allow_referer%3D%26signature%3DNu7wFXfx7zBLDozQGDggBbEeDOY%253D',
+        Rainy_day_03: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FcKm1Z3%2FbtsQfEdVy9d%2FAAAAAAAAAAAAAAAAAAAAANazx-oycqlJA7mCnErm8eqB3-ZUXTphb6NhpnfaUxDd%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1759244399%26allow_ip%3D%26allow_referer%3D%26signature%3DRMBSmRkdJFX%252FdbAl0CnqEzp%252Bmjo%253D',
+        // 눈 이미지들 (여러 장)
+        Snowy_day_01: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FcvgDDe%2FbtsQdftsxi1%2FAAAAAAAAAAAAAAAAAAAAAN8Z5o_4WyuImuzfL6_T6cOjH0aokUTg5wBBAa8qF6NK%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1759244399%26allow_ip%3D%26allow_referer%3D%26signature%3DQaPC%252BMqOM0qlfwXkfZLcj7GGDQc%253D',
+        Snowy_day_02: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbrW66m%2FbtsQfItQ8rs%2FAAAAAAAAAAAAAAAAAAAAAOz2WMGpI5pVEhFez2A1LUqz-XlZyDbnmElo3JhpqVV0%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1759244399%26allow_ip%3D%26allow_referer%3D%26signature%3DyB4kl1pRo9C9RxW5OKBYWTt%252BKTs%253D',
+        Snowy_day_03: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbkFzvn%2FbtsQcs0AtyH%2FAAAAAAAAAAAAAAAAAAAAAFwmgD00b7QnQS6XvWIKv62R0OmZwC9u0Re1RiI37mJX%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1759244399%26allow_ip%3D%26allow_referer%3D%26signature%3D45RAgy4ukGJw4V34Uu%252BxoIlqg0w%253D',
+        // 기존 단일 이미지 (호환성을 위해 유지)
         Rainy_day: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FeirrGO%2FbtsQe8l3mps%2FAAAAAAAAAAAAAAAAAAAAAAlRVPRGRhDEsjtVh-K3_HcJRanhbAq-TVytWEtp1WAi%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1756652399%26allow_ip%3D%26allow_referer%3D%26signature%3D52xs8gPufNM8CCjsmSvNfacieFg%253D',
         Snowy_day: 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbUw51u%2FbtsQe80CgOq%2FAAAAAAAAAAAAAAAAAAAAABj0aN3yNisO633yhgtPR92YczqoBjCOdM1gdoHUhcZ_%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1756652399%26allow_ip%3D%26allow_referer%3D%26signature%3DhgDMAhLHulpswfMhJJAgq0C6lIo%253D',
     };
 
     let currentConfig = {
-        weather: 'Clear', // 기본값
+        weather: 'Clear',
+        rainyIndex: 1,  // 비 이미지 인덱스 (1, 2, 3 순환)
+        snowyIndex: 1   // 눈 이미지 인덱스 (1, 2, 3 순환)
     };
 
-    // --- FIREBASE FUNCTIONS (기존 localStorage 함수 대체) ---
+    // YouTube 플레이어 관련 변수들
+    let ytPlayer = null;
+    let isYouTubeAPIReady = false;
 
-    // 1. Firebase에서 데이터 불러오고, 실시간 변경 감지하기
+    // --- FIREBASE FUNCTIONS ---
     function syncDataFromFirebase() {
-        // 'statusData'라는 이름으로 저장된 데이터를 감지합니다.
         database.ref('statusData').on('value', (snapshot) => {
             const data = snapshot.val();
             if (data) {
                 // 캐릭터 정보 업데이트
                 editableFields.forEach(field => {
                     if (data.characters && data.characters[field.id]) {
-                        // Firebase에 저장된 값으로 화면을 업데이트합니다.
-                        // 단, 현재 내가 수정 중인 필드는 강제로 덮어쓰지 않도록 체크합니다.
                         if (document.activeElement !== field) {
                            field.innerHTML = data.characters[field.id];
                         }
@@ -391,42 +514,169 @@ document.addEventListener('DOMContentLoaded', () => {
                 // 날씨 정보 업데이트
                 if (data.weather) {
                     currentConfig.weather = data.weather;
-                    updateWeatherButtons();
-                    updateTimeAndBackground();
+                }
+                if (data.rainyIndex) {
+                    currentConfig.rainyIndex = data.rainyIndex;
+                }
+                if (data.snowyIndex) {
+                    currentConfig.snowyIndex = data.snowyIndex;
+                }
+                updateWeatherButtons();
+                updateTimeAndBackground();
+
+                // 캐릭터 이미지 업데이트
+                if (data.characterImages) {
+                    if (data.characterImages.Toma && tomaImg.src !== data.characterImages.Toma) {
+                        tomaImg.src = data.characterImages.Toma;
+                    }
+                    if (data.characterImages.bardock && bardockImg.src !== data.characterImages.bardock) {
+                        bardockImg.src = data.characterImages.bardock;
+                    }
+                }
+
+                // 음악 URL 업데이트
+                if (data.musicUrl && musicUrlInput.value !== data.musicUrl) {
+                    musicUrlInput.value = data.musicUrl;
                 }
             }
         });
     }
 
-    // 2. Firebase에 데이터 저장하기
     function saveDataToFirebase(id, value) {
-        // characters라는 그룹 아래에 각 필드 ID를 키로 하여 값을 저장합니다.
         database.ref(`statusData/characters/${id}`).set(value);
     }
     
-    // 3. 날씨 선택 정보 Firebase에 저장하기
     function saveWeatherToFirebase(weatherValue) {
         database.ref('statusData/weather').set(weatherValue);
     }
 
+    function saveWeatherIndexToFirebase(weather, index) {
+        if (weather === 'Rainy') {
+            database.ref('statusData/rainyIndex').set(index);
+        } else if (weather === 'Snowy') {
+            database.ref('statusData/snowyIndex').set(index);
+        }
+    }
 
-    // --- ORIGINAL FUNCTIONS (일부 수정) ---
-    
-    // 3. Update weather button styles
+    function saveCharacterImageToFirebase(character, imageData) {
+        database.ref(`statusData/characterImages/${character}`).set(imageData);
+    }
+
+    function saveMusicUrlToFirebase(url) {
+        database.ref('statusData/musicUrl').set(url);
+    }
+
+    // --- IMAGE UPLOAD FUNCTIONS ---
+    function handleImageUpload(file, character) {
+        if (!file || !file.type.startsWith('image/')) {
+            alert('이미지 파일만 업로드 가능합니다.');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imageData = e.target.result;
+            saveCharacterImageToFirebase(character, imageData);
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // --- WEATHER FUNCTIONS ---
     function updateWeatherButtons() {
         weatherButtons.forEach(button => {
             button.classList.toggle('active', button.dataset.weather === currentConfig.weather);
         });
     }
 
-    // 4. Handle weather selection
     function handleWeatherChange(event) {
         const newWeather = event.target.dataset.weather;
-        // Firebase에 새로운 날씨 값을 저장합니다. (이후 syncDataFromFirebase가 알아서 화면을 갱신합니다)
-        saveWeatherToFirebase(newWeather);
+        
+        if (newWeather === currentConfig.weather) {
+            // 같은 날씨 버튼을 다시 클릭한 경우
+            if (newWeather === 'Rainy') {
+                // 비 이미지 순환 (1 -> 2 -> 3 -> 1)
+                currentConfig.rainyIndex = (currentConfig.rainyIndex % 3) + 1;
+                saveWeatherIndexToFirebase('Rainy', currentConfig.rainyIndex);
+            } else if (newWeather === 'Snowy') {
+                // 눈 이미지 순환 (1 -> 2 -> 3 -> 1)
+                currentConfig.snowyIndex = (currentConfig.snowyIndex % 3) + 1;
+                saveWeatherIndexToFirebase('Snowy', currentConfig.snowyIndex);
+            }
+        } else {
+            // 다른 날씨로 변경
+            currentConfig.weather = newWeather;
+            saveWeatherToFirebase(newWeather);
+        }
+        
+        updateTimeAndBackground();
     }
 
-    // --- ACCURATE TIME LOGIC (변경 없음) ---
+    // --- YOUTUBE FUNCTIONS ---
+    function loadYouTubeAPI() {
+        if (window.YT) {
+            isYouTubeAPIReady = true;
+            return;
+        }
+        
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+
+    window.onYouTubeIframeAPIReady = function() {
+        isYouTubeAPIReady = true;
+    };
+
+    function extractVideoId(url) {
+        const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        const match = url.match(regex);
+        return match ? match[1] : null;
+    }
+
+    function playYouTubeMusic(videoId) {
+        if (!isYouTubeAPIReady) {
+            alert('YouTube API가 아직 로드되지 않았습니다. 잠시 후 다시 시도해주세요.');
+            return;
+        }
+
+        if (ytPlayer) {
+            ytPlayer.destroy();
+        }
+
+        ytPlayer = new YT.Player('youtube-container', {
+            height: '1',
+            width: '1',
+            videoId: videoId,
+            playerVars: {
+                'autoplay': 1,
+                'loop': 1,
+                'playlist': videoId,
+                'controls': 0,
+                'showinfo': 0,
+                'rel': 0,
+                'iv_load_policy': 3,
+                'modestbranding': 1
+            },
+            events: {
+                'onReady': function(event) {
+                    event.target.setVolume(50);
+                },
+                'onError': function(event) {
+                    alert('YouTube 비디오를 로드할 수 없습니다. URL을 확인해주세요.');
+                }
+            }
+        });
+    }
+
+    function stopYouTubeMusic() {
+        if (ytPlayer) {
+            ytPlayer.destroy();
+            ytPlayer = null;
+        }
+    }
+
+    // --- TIME FUNCTIONS ---
     let timeOffset = 0;
     async function syncTime() {
         try {
@@ -441,7 +691,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 5. 시간 및 배경 업데이트 함수 (변경 없음)
     function updateTimeAndBackground() {
         const correctedNow = new Date(new Date().getTime() + timeOffset);
         const optionsDate = { timeZone: 'Asia/Seoul', year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
@@ -456,9 +705,14 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (kstHour >= 18 && kstHour < 22) timeOfDay = 'evening';
         else timeOfDay = 'night';
 
-        let bgKey = (currentConfig.weather === 'Rainy' || currentConfig.weather === 'Snowy')
-            ? `${currentConfig.weather}_day`
-            : `${currentConfig.weather}_${timeOfDay}`;
+        let bgKey;
+        if (currentConfig.weather === 'Rainy') {
+            bgKey = `Rainy_day_${String(currentConfig.rainyIndex).padStart(2, '0')}`;
+        } else if (currentConfig.weather === 'Snowy') {
+            bgKey = `Snowy_day_${String(currentConfig.snowyIndex).padStart(2, '0')}`;
+        } else {
+            bgKey = `${currentConfig.weather}_${timeOfDay}`;
+        }
         
         const newBgAsset = backgroundAssets[bgKey] || backgroundAssets['Clear_morning'];
         const newBgUrl = `url('${newBgAsset}')`;
@@ -469,7 +723,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- EVENT LISTENERS ---
     editableFields.forEach(field => {
-        // 'input' 이벤트가 발생할 때마다 Firebase에 데이터를 저장합니다.
         field.addEventListener('input', (event) => {
             saveDataToFirebase(event.target.id, event.target.innerHTML);
         });
@@ -479,8 +732,62 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', handleWeatherChange);
     });
 
+    // 캐릭터 카드 클릭 이벤트
+    tomaCard.addEventListener('click', (e) => {
+        // info 패널 클릭은 무시
+        if (e.target.closest('.two-dialog-info')) return;
+        tomaFileInput.click();
+    });
+
+    bardockCard.addEventListener('click', (e) => {
+        // info 패널 클릭은 무시
+        if (e.target.closest('.two-dialog-info')) return;
+        bardockFileInput.click();
+    });
+
+    // 파일 업로드 이벤트
+    tomaFileInput.addEventListener('change', (e) => {
+        if (e.target.files[0]) {
+            handleImageUpload(e.target.files[0], 'Toma');
+        }
+    });
+
+    bardockFileInput.addEventListener('change', (e) => {
+        if (e.target.files[0]) {
+            handleImageUpload(e.target.files[0], 'bardock');
+        }
+    });
+
+    // 음악 컨트롤 이벤트
+    playMusicBtn.addEventListener('click', () => {
+        const url = musicUrlInput.value.trim();
+        if (!url) {
+            alert('YouTube 링크를 입력해주세요.');
+            return;
+        }
+
+        const videoId = extractVideoId(url);
+        if (!videoId) {
+            alert('올바른 YouTube 링크를 입력해주세요.');
+            return;
+        }
+
+        saveMusicUrlToFirebase(url);
+        playYouTubeMusic(videoId);
+    });
+
+    stopMusicBtn.addEventListener('click', () => {
+        stopYouTubeMusic();
+    });
+
+    musicUrlInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            playMusicBtn.click();
+        }
+    });
+
     // --- INITIALIZATION ---
-    // Firebase와 데이터 동기화를 시작합니다.
+    loadYouTubeAPI();
     syncDataFromFirebase();
     
     syncTime().then(() => {
@@ -488,9 +795,13 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(updateTimeAndBackground, 1000); 
     });
     setInterval(syncTime, 600000);
+}
+
+// DOM이 로드된 후 Firebase 초기화 시작
+document.addEventListener('DOMContentLoaded', () => {
+    initializeFirebase();
 });
 </script>
 
 </body>
 </html>
-
