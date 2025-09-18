@@ -790,15 +790,26 @@ function startApp() {
         }
     });
 
-    // --- INITIALIZATION ---
-    loadYouTubeAPI();
-    syncDataFromFirebase();
-    
-    syncTime().then(() => {
-        updateTimeAndBackground(); 
-        setInterval(updateTimeAndBackground, 1000); 
-    });
-    setInterval(syncTime, 600000);
+// --- INITIALIZATION ---
+loadYouTubeAPI();
+syncDataFromFirebase();
+
+// 자동재생 기능 추가
+setTimeout(() => {
+    const savedUrl = musicUrlInput.value;
+    if (savedUrl) {
+        const videoId = extractVideoId(savedUrl);
+        if (videoId && isYouTubeAPIReady) {
+            playYouTubeMusic(videoId);
+        }
+    }
+}, 2000); // 2초 후 자동재생
+
+syncTime().then(() => {
+    updateTimeAndBackground(); 
+    setInterval(updateTimeAndBackground, 1000); 
+});
+setInterval(syncTime, 600000);
 }
 
 // DOM이 로드된 후 Firebase 초기화 시작
