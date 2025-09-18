@@ -368,31 +368,31 @@
                         </div>
                     </div>
                 </div>
-                <!-- bardock's Card -->
-                <div id="bardock-card" class="two-dialog-card" data-character="bardock">
+                <!-- Turles's Card -->
+                <div id="Turles-card" class="two-dialog-card" data-character="Turles">
                     <div class="upload-hint">클릭해서 이미지 변경</div>
-                    <img src="https://blog.kakaocdn.net/dna/bKu25Q/btsQb5EAB6M/AAAAAAAAAAAAAAAAAAAAANYNIyVG4rc7JTmmSVIW36iwP15HeLNwP_vjDGrdunOZ/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1756652399&allow_ip=&allow_referer=&signature=Jpk0%2FguItPmYKHMMbkLyljXvFRM%3D" alt="bardock" class="two-dialog-char-img" id="bardock-img"/>
+                    <img src="https://blog.kakaocdn.net/dna/bKu25Q/btsQb5EAB6M/AAAAAAAAAAAAAAAAAAAAANYNIyVG4rc7JTmmSVIW36iwP15HeLNwP_vjDGrdunOZ/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1756652399&allow_ip=&allow_referer=&signature=Jpk0%2FguItPmYKHMMbkLyljXvFRM%3D" alt="Turles" class="two-dialog-char-img" id="Turles-img"/>
                     <div class="two-dialog-info">
-                        <h3 style="text-align: center; margin-top: 0;">BARDOCK</h3>
+                        <h3 style="text-align: center; margin-top: 0;">TURLES</h3>
                         <div class="two-dialog-info-box">
                             <span class="label">위치:</span>
-                            <div class="value" id="bardock-location" contenteditable="true"></div>
+                            <div class="value" id="Turles-location" contenteditable="true"></div>
                         </div>
                         <div class="two-dialog-info-box">
                             <span class="label">소지품:</span>
-                            <div class="value" id="bardock-outfit" contenteditable="true"></div>
+                            <div class="value" id="Turles-outfit" contenteditable="true"></div>
                         </div>
                         <div class="two-dialog-info-box">
                            <span class="label">내심:</span>
-                            <div class="value" id="bardock-relations" contenteditable="true"></div>
+                            <div class="value" id="Turles-relations" contenteditable="true"></div>
                         </div>
                         <div class="two-dialog-info-box">
                             <span class="label">상태:</span>
-                            <div class="value" id="bardock-status" contenteditable="true"></div>
+                            <div class="value" id="Turles-status" contenteditable="true"></div>
                         </div>
                         <div class="two-dialog-info-box cc-info-box1">
                             <span class="label">한마디:</span>
-                            <div class="value" id="bardock-thoughts" contenteditable="true"></div>
+                            <div class="value" id="Turles-thoughts" contenteditable="true"></div>
                         </div>
                     </div>
                 </div>
@@ -409,7 +409,7 @@
 
     <!-- 숨겨진 파일 입력들 -->
     <input type="file" id="Toma-file-input" class="hidden-file-input" accept="image/*">
-    <input type="file" id="bardock-file-input" class="hidden-file-input" accept="image/*">
+    <input type="file" id="Turles-file-input" class="hidden-file-input" accept="image/*">
 
     <!-- YouTube 플레이어 -->
     <div id="youtube-container" class="youtube-container"></div>
@@ -458,11 +458,11 @@ function startApp() {
     
     // 캐릭터 카드와 파일 입력들
     const tomaCard = document.getElementById('Toma-card');
-    const bardockCard = document.getElementById('bardock-card');
+    const turlesCard = document.getElementById('Turles-card');
     const tomaFileInput = document.getElementById('Toma-file-input');
-    const bardockFileInput = document.getElementById('bardock-file-input');
+    const turlesFileInput = document.getElementById('Turles-file-input');
     const tomaImg = document.getElementById('Toma-img');
-    const bardockImg = document.getElementById('bardock-img');
+    const turlesImg = document.getElementById('Turles-img');
 
     // --- DATA ---
     const backgroundAssets = {
@@ -529,8 +529,8 @@ function startApp() {
                     if (data.characterImages.Toma && tomaImg.src !== data.characterImages.Toma) {
                         tomaImg.src = data.characterImages.Toma;
                     }
-                    if (data.characterImages.bardock && bardockImg.src !== data.characterImages.bardock) {
-                        bardockImg.src = data.characterImages.bardock;
+                    if (data.characterImages.Turles && turlesImg.src !== data.characterImages.Turles) {
+                        TurlesImg.src = data.characterImages.Turles;
                     }
                 }
 
@@ -739,10 +739,10 @@ function startApp() {
         tomaFileInput.click();
     });
 
-    bardockCard.addEventListener('click', (e) => {
+    turlesCard.addEventListener('click', (e) => {
         // info 패널 클릭은 무시
         if (e.target.closest('.two-dialog-info')) return;
-        bardockFileInput.click();
+        TurlesFileInput.click();
     });
 
     // 파일 업로드 이벤트
@@ -752,9 +752,9 @@ function startApp() {
         }
     });
 
-    bardockFileInput.addEventListener('change', (e) => {
+    turlesFileInput.addEventListener('change', (e) => {
         if (e.target.files[0]) {
-            handleImageUpload(e.target.files[0], 'bardock');
+            handleImageUpload(e.target.files[0], 'Turles');
         }
     });
 
@@ -816,4 +816,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
