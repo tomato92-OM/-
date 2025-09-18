@@ -506,7 +506,7 @@ function startApp() {
                 editableFields.forEach(field => {
                     if (data.characters && data.characters[field.id]) {
                         if (document.activeElement !== field) {
-                           field.innerHTML = data.characters[field.id];
+                           field.textContent = data.characters[field.id];  
                         }
                     }
                 });
@@ -530,7 +530,7 @@ function startApp() {
                         tomaImg.src = data.characterImages.Toma;
                     }
                     if (data.characterImages.Turles && turlesImg.src !== data.characterImages.Turles) {
-                        TurlesImg.src = data.characterImages.Turles;
+    turlesImg.src = data.characterImages.Turles;
                     }
                 }
 
@@ -724,7 +724,7 @@ function startApp() {
     // --- EVENT LISTENERS ---
     editableFields.forEach(field => {
         field.addEventListener('input', (event) => {
-            saveDataToFirebase(event.target.id, event.target.innerHTML);
+            saveDataToFirebase(event.target.id, event.target.textContent);
         });
     });
 
@@ -742,7 +742,7 @@ function startApp() {
     turlesCard.addEventListener('click', (e) => {
         // info 패널 클릭은 무시
         if (e.target.closest('.two-dialog-info')) return;
-        TurlesFileInput.click();
+        turlesFileInput.click();
     });
 
     // 파일 업로드 이벤트
@@ -808,6 +808,16 @@ syncTime().then(() => {
 setInterval(syncTime, 600000);
 }
 
+// 메모리 누수 방지 - 페이지 종료시 리스너 정리
+window.addEventListener('beforeunload', () => {
+    if (database) {
+        database.ref('statusData').off();
+    }
+    if (ytPlayer) {
+        ytPlayer.destroy();
+    }
+});
+
 // DOM이 로드된 후 Firebase 초기화 시작
 document.addEventListener('DOMContentLoaded', () => {
     initializeFirebase();
@@ -816,4 +826,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
-
